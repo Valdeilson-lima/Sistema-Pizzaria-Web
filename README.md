@@ -21,7 +21,7 @@ Frontend da aplicação de pizzaria, desenvolvido com Next.js e TypeScript.
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/pizzaria-frontend.git
+   git clone git@github.com:Valdeilson-lima/Sistema-Pizzaria-Web.git
    ```
 
 2. **Navegue até o diretório do projeto:**
