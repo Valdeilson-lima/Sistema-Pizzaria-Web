@@ -21,7 +21,6 @@ export function Modalorder() {
     }
   }
 
-
   return (
     <dialog className={styles.dialogContainer}>
       <section className={styles.dialogContent}>
@@ -46,8 +45,11 @@ export function Modalorder() {
           <ul className={styles.itemList}>
             {order.map((item) => (
               <li key={item.id} className={styles.item}>
+                <img src={item.product.banner} alt={item.product.name} className={styles.itemImage}/>
                 <div className={styles.itemRow}>
-                  <span className={styles.productName}>{item.product.name}</span>
+                  <span className={styles.productName}>
+                    {item.product.name}
+                  </span>
                   <span className={styles.unitPrice}>
                     R$ {Number(item.product.price).toFixed(2)}
                   </span>
@@ -73,13 +75,16 @@ export function Modalorder() {
             <span className={styles.totalLabel}>Total do Pedido:</span>
             <span className={styles.totalValue}>
               R$ {
-                order.reduce((acc, item) => acc + Number(item.product.price) * item.amount, 0).toFixed(2)
-              }
+                order.reduce(
+                  (acc, item) => acc + Number(item.product.price) * item.amount,
+                  0
+                )
+                .toFixed(2)}
             </span>
           </div>
 
-          <button 
-            className={styles.buttonOrder} 
+          <button
+            className={styles.buttonOrder}
             onClick={handleFinishOrder}
             disabled={loading}
           >

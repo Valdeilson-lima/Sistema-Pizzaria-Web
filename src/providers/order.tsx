@@ -73,7 +73,14 @@ export function OrderProvider({ children }: OrderProviderProps) {
 
 
 
-    setOrder(response.data);
+    const processedOrder = response.data.map((item: any) => ({
+      ...item,
+      product: {
+        ...item.product,
+        price: parseFloat(item.product.price.replace(',', '.')),
+      },
+    }));
+    setOrder(processedOrder);
     setIsOpen(true);
   }
 

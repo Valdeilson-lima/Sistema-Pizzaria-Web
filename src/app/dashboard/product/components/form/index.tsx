@@ -9,10 +9,6 @@ import { getCookieClient } from "@/lib/cookieClient";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-
-
-
-
 interface CategoriesProps {
   id: number;
   name: string;
@@ -23,8 +19,7 @@ interface Props {
 }
 
 export function Form({ categories }: Props) {
-   const router = useRouter();
-
+  const router = useRouter();
 
   const [image, setImage] = useState<File>();
   const [previewImage, setPreviewImage] = useState("");
@@ -47,8 +42,8 @@ export function Form({ categories }: Props) {
       data.append("price", price);
       data.append("description", description);
       data.append(
-        "categoryId",
-        categories[Number(categoryIndex)].id.toString()
+        "categoryId", categoryIndex
+       
       );
       data.append("file", image);
 
@@ -70,16 +65,12 @@ export function Form({ categories }: Props) {
         setPreviewImage("");
         toast.success("Produto cadastrado com sucesso!");
         router.push("/dashboard");
-
-
       }
+      console.log(data);
     } catch (error) {
       console.error("Erro ao cadastrar produto:", error);
-       toast.error("Erro ao cadastrar produto. Por favor, tente novamente.");
-
+      toast.error("Erro ao cadastrar produto. Por favor, tente novamente.");
     }
-
-    
   }
 
   function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
@@ -125,7 +116,7 @@ export function Form({ categories }: Props) {
         <select name="categoryId">
           <option>Selecione Uma Categoria</option>
           {categories.map((category, index) => (
-            <option key={category.id} value={index}>
+            <option key={category.id} value={category.id}>
               {category.name}
             </option>
           ))}
